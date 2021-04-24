@@ -6,7 +6,8 @@ Instagram tool to download images, videos, reels in one place
 
 # DEMO
 
-[Try out the app](https://isave.netlify.app/)
+[Web App](https://isave.netlify.app/)
+[Check out the App](https://github.com/devyuji/isave-app)
 
 ## Installation
 
