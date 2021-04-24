@@ -66,7 +66,8 @@ export default function App() {
     <div className="App">
       <MobileView className="mobile_container">
         <p>
-          Download app from <a href="/">here</a>
+          Download app from{" "}
+          <a href="https://github.com/devyuji/isave-app/releases">here</a>
         </p>
       </MobileView>
       <Navbar />
