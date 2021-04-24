@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-clr: #fff;
+  --ft: "Poppins", sans-serif;
+  --animation: 30rem;
+}
+
+body {
+  background-color: var(--bg-clr);
+  font-family: var(--ft);
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/*navbar*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.header a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/*body*/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  margin: 3rem 0 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.form {
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  border-radius: 4px;
+  height: 3rem;
+  border: 2px solid #000;
+  overflow: hidden;
+}
+
+.form input {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--ft);
+}
+
+.form button {
+  border: none;
+  cursor: pointer;
+  background-color: #000;
+  width: 10rem;
+  height: 100%;
+  color: #fff;
+  text-transform: capitalize;
+  outline: none;
+}
+
+/*card*/
+.card_Container {
+  width: 100%;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.card_Container a {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.image_container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/*loading*/
+.loading_container {
+  width: 90%;
+  height: 3rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading_container span {
+  display: inline-block;
+  height: 0.3rem;
+  width: 5rem;
+  background-color: #000;
+  border-radius: 100px;
+}
+
+/*error*/
+.error_container {
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.error_container h1 {
+  color: rgb(255, 70, 70);
+  font-size: 1rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/*footer*/
+.footer {
+  margin-top: auto;
+  width: 100%;
+}
+
+.footer h1 {
+  text-align: center;
+  font-size: 1rem;
+  padding: 2rem 0;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.mobile_container {
+  background-color: #000;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile_container p {
+  color: #fafafa;
+}
+
+.mobile_container p a {
+  border-bottom: 1px solid #fff;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --animation: 35rem;
+  }
+
+  .header {
+    padding: 0 2rem;
+  }
+
+  .container {
+    width: 35rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .card_Container {
+    width: 35rem;
+  }
+
+  .loading_container {
+    width: 35rem;
+  }
+}
