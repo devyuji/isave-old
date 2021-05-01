@@ -1,23 +1,22 @@
-import "./style.css";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { MobileView } from "react-device-detect";
 
 // components
-import Navbar from "./components/header";
-import Body from "./components/body";
-import Card from "./components/card";
-import Loading from "./components/loading";
-import Footer from "./components/footer";
+import Navbar from "../components/header";
+import Body from "../components/body";
+import Card from "../components/card";
+import Loading from "../components/loading";
+import Footer from "../components/footer";
 
-export default function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [prevInputValue, setPrevInputValue] = useState("");
-  const [DATA, setData] = useState();
-  const [cardShow, setCardShow] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+const Home: FC = () => {
+  const [inputValue, setInputValue] = useState<string>("");
+  const [prevInputValue, setPrevInputValue] = useState<string>("");
+  const [DATA, setData] = useState<any>();
+  const [cardShow, setCardShow] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   // instagram url check
   const instagramUrlCheck = () => {
@@ -40,15 +39,18 @@ export default function App() {
   };
 
   // fetching data
-  const fetch = async (e) => {
+  const fetch = async (e: any) => {
     e.preventDefault();
     const match = instagramUrlCheck();
     if (match && similarUrlCheck()) {
       setLoading(true);
       try {
-        const { data } = await axios.post("http://localhost:5001/api/post", {
-          url: inputValue,
-        });
+        const { data } = await axios.post(
+          "https://shielded-basin-48291.herokuapp.com/api/post",
+          {
+            url: inputValue,
+          }
+        );
         setPrevInputValue(inputValue);
         setData(data);
         setCardShow(true);
@@ -63,8 +65,8 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <MobileView className="mobile_container">
+    <>
+      <MobileView viewClassName="mobile_container">
         <p>
           Download app from{" "}
           <a href="https://github.com/devyuji/isave-app/releases">here</a>
@@ -94,6 +96,8 @@ export default function App() {
         </div>
       )}
       <Footer />
-    </div>
+    </>
   );
-}
+};
+
+export default Home;

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import { FC } from "react";
 
-export default function Loading() {
+const Loading: FC = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,4 +16,6 @@ export default function Loading() {
       ></motion.span>
     </motion.div>
   );
-}
+};
+
+export default Loading;

@@ -1,4 +1,20 @@
-function Card({ data }) {
+import { FC } from "react";
+
+interface CardProps {
+  data: any;
+}
+
+interface CardImageProps {
+  imageUrl: string;
+  imageSrc: string;
+}
+
+interface CardVideoProps {
+  videoUrl: string;
+  imageSrc: string;
+}
+
+const Card: FC<CardProps> = ({ data }) => {
   if (data.type === "image")
     return <CardImage imageUrl={data.image_url} imageSrc={data.image_src} />;
   else if (data.type === "video")
@@ -9,7 +25,7 @@ function Card({ data }) {
       />
     );
   else if (data.type === "slide") {
-    return data.links.map((d, index) => {
+    return data.links.map((d: any, index: number) => {
       if (d.type === "image")
         return (
           <CardImage
@@ -28,9 +44,9 @@ function Card({ data }) {
   }
 
   return <h1 style={{ textAlign: "center" }}>something is wrong gome!</h1>;
-}
+};
 
-function CardImage({ imageUrl, imageSrc }) {
+const CardImage: FC<CardImageProps> = ({ imageUrl, imageSrc }) => {
   return (
     <div className="card">
       <div className="image_container">
@@ -39,9 +55,9 @@ function CardImage({ imageUrl, imageSrc }) {
       <a href={`${imageUrl}&dl=1`}>download</a>
     </div>
   );
-}
+};
 
-function CardVideo({ videoUrl, imageSrc }) {
+const CardVideo: FC<CardVideoProps> = ({ videoUrl, imageSrc }) => {
   return (
     <div className="card">
       <div className="image_container">
@@ -50,6 +66,6 @@ function CardVideo({ videoUrl, imageSrc }) {
       <a href={`${videoUrl}&dl=1`}>download</a>
     </div>
   );
-}
+};
 
 export default Card;
