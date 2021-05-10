@@ -45,12 +45,9 @@ const Home: FC = () => {
     if (match && similarUrlCheck()) {
       setLoading(true);
       try {
-        const { data } = await axios.post(
-          "https://shielded-basin-48291.herokuapp.com/api/post",
-          {
-            url: inputValue,
-          }
-        );
+        const { data } = await axios.post("http://localhost:5001/api/post", {
+          url: inputValue,
+        });
         setPrevInputValue(inputValue);
         setData(data);
         setCardShow(true);
