@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
-import { MobileView } from "react-device-detect";
+import { MobileOnlyView } from "react-device-detect";
 
 // components
 import Navbar from "../components/header";
@@ -45,9 +45,12 @@ const Home: FC = () => {
     if (match && similarUrlCheck()) {
       setLoading(true);
       try {
-        const { data } = await axios.post("http://localhost:5001/api/post", {
-          url: inputValue,
-        });
+        const { data } = await axios.post(
+          "https://shielded-basin-48291.herokuapp.com/api/post",
+          {
+            url: inputValue,
+          }
+        );
         setPrevInputValue(inputValue);
         setData(data);
         setCardShow(true);
@@ -63,12 +66,12 @@ const Home: FC = () => {
 
   return (
     <>
-      <MobileView viewClassName="mobile_container">
+      <MobileOnlyView viewClassName="mobile_container">
         <p>
           Download app from{" "}
           <a href="https://github.com/devyuji/isave-app/releases">here</a>
         </p>
-      </MobileView>
+      </MobileOnlyView>
       <Navbar />
       <Body inputValue={setInputValue} fetch={fetch} />
       <AnimatePresence>{loading && <Loading />}</AnimatePresence>

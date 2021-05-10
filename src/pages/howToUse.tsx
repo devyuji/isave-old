@@ -9,10 +9,17 @@ import image1 from "../images/image1.png";
 import image2 from "../images/image2.png";
 import image3 from "../images/image3.png";
 import image4 from "../images/image4.png";
+import { MobileOnlyView } from "react-device-detect";
 
 const HowToUse: FC = () => {
   return (
     <>
+      <MobileOnlyView viewClassName="mobile_container">
+        <p>
+          Download app from{" "}
+          <a href="https://github.com/devyuji/isave-app/releases">here</a>
+        </p>
+      </MobileOnlyView>
       <Navbar />
       <div className="how_container">
         <h1 className="heading">How To Use</h1>
