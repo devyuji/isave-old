@@ -34,16 +34,14 @@ const Card: FC<CardProps> = ({ data }) => {
             key={index}
           />
         );
-      else if (d.type === "video")
+      else
         return (
           <CardVideo videoUrl={d.video} imageSrc={d.image_src} key={index} />
         );
-
-      return null;
     });
   }
 
-  return <h1 style={{ textAlign: "center" }}>something is wrong gome!</h1>;
+  return null;
 };
 
 const CardImage: FC<CardImageProps> = ({ imageUrl, imageSrc }) => {

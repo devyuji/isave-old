@@ -10,13 +10,18 @@ import Card from "../components/card";
 import Loading from "../components/loading";
 import Footer from "../components/footer";
 
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { post } from "../redux/action";
+
 const Home: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [prevInputValue, setPrevInputValue] = useState<string>("");
-  const [DATA, setData] = useState<any>();
-  const [cardShow, setCardShow] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const DATA = useSelector((s) => s);
 
   // instagram url check
   const instagramUrlCheck = () => {
@@ -45,17 +50,18 @@ const Home: FC = () => {
     if (match && similarUrlCheck()) {
       setLoading(true);
       try {
-        const { data } = await axios.post("http://localhost:5001/api/post", {
-          url: inputValue,
-        });
+        const { data } = await axios.post(
+          "https://shielded-basin-48291.herokuapp.com/api/post",
+          {
+            url: inputValue,
+          }
+        );
         setPrevInputValue(inputValue);
-        setData(data);
-        setCardShow(true);
+        dispatch(post(data));
         setError(false);
       } catch (err) {
         setPrevInputValue("");
         setError(true);
-        setCardShow(false);
       }
       setLoading(false);
     }
@@ -87,11 +93,9 @@ const Home: FC = () => {
         )}
       </AnimatePresence>
 
-      {cardShow && (
-        <div className="card_Container">
-          <Card data={DATA} />
-        </div>
-      )}
+      <div className="card_Container">
+        <Card data={DATA} />
+      </div>
       <Footer />
     </>
   );
