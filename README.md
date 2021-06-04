@@ -2,7 +2,7 @@
 
 Instagram tool to download images, videos, reels in one place
 
-![](/public/images/cover_img.png)
+![](/public/images/cover_image.png)
 
 # DEMO
 
