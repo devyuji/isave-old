@@ -4,3 +4,24 @@ export const post = (data: any) => {
     payload: data,
   };
 };
+
+export const prevLinkPost = (link: string) => {
+  return {
+    type: "POST_URL",
+    payload: link,
+  };
+};
+
+export const prevLinkProfile = (link: string) => {
+  return {
+    type: "PROFILE_URL",
+    payload: link,
+  };
+};
+
+export const profile = (data: any) => {
+  return {
+    type: "PROFILE",
+    payload: data,
+  };
+};

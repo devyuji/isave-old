@@ -1,4 +1,14 @@
-import { createStore } from "redux";
-import { DATA } from "./reducer";
+import { createStore, combineReducers } from "redux";
+import { POST_DATA, PROFILE_DATA, PREVLINK } from "./reducer";
 
-export const store = createStore(DATA);
+const combineReducer = combineReducers({
+  POST_DATA,
+  PROFILE_DATA,
+  PREVLINK,
+});
+
+export const store = createStore(
+  combineReducer,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);

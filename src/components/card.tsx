@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { download } from "../lib/download";
 
 interface CardProps {
   data: any;
@@ -50,7 +51,9 @@ const CardImage: FC<CardImageProps> = ({ imageUrl, imageSrc }) => {
       <div className="image_container">
         <img src={`data:image/png;base64,${imageSrc}`} alt="" />
       </div>
-      <a href={`${imageUrl}&dl=1`}>download</a>
+      <button className="btn" onClick={() => download(imageUrl)}>
+        download
+      </button>
     </div>
   );
 };
@@ -61,7 +64,9 @@ const CardVideo: FC<CardVideoProps> = ({ videoUrl, imageSrc }) => {
       <div className="image_container">
         <img src={`data:image/png;base64,${imageSrc}`} alt="" />
       </div>
-      <a href={`${videoUrl}&dl=1`}>download</a>
+      <button className="btn" onClick={() => download(videoUrl)}>
+        download
+      </button>
     </div>
   );
 };

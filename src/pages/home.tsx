@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { MobileOnlyView } from "react-device-detect";
 
@@ -12,16 +12,19 @@ import Footer from "../components/footer";
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { post } from "../redux/action";
+import { post, prevLinkPost } from "../redux/action";
+import Error from "../components/error";
+
+const TITLE = "Download Instagram Videos, Images, And Reels In One Place.";
 
 const Home: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [prevInputValue, setPrevInputValue] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const DATA = useSelector((s) => s);
+  const DATA = useSelector((s: any) => s.POST_DATA);
+  const prevInputValue = useSelector((s: any) => s.PREVLINK);
 
   // instagram url check
   const instagramUrlCheck = () => {
@@ -38,7 +41,7 @@ const Home: FC = () => {
   };
 
   const similarUrlCheck = () => {
-    if (inputValue === prevInputValue) return false;
+    if (inputValue === prevInputValue.post) return false;
 
     return true;
   };
@@ -50,14 +53,14 @@ const Home: FC = () => {
     if (match && similarUrlCheck()) {
       setLoading(true);
       try {
-        const { data } = await axios.post("http://localhost:5001/api/post", {
+        const { data } = await axios.post("/post", {
           url: inputValue,
         });
-        setPrevInputValue(inputValue);
+        dispatch(prevLinkPost(inputValue));
         dispatch(post(data));
         setError(false);
       } catch (err) {
-        setPrevInputValue("");
+        console.error(err);
         setError(true);
       }
       setLoading(false);
@@ -73,23 +76,9 @@ const Home: FC = () => {
         </p>
       </MobileOnlyView>
       <Navbar />
-      <Body inputValue={setInputValue} fetch={fetch} />
+      <Body inputValue={setInputValue} fetch={fetch} title={TITLE} />
       <AnimatePresence>{loading && <Loading />}</AnimatePresence>
-      <AnimatePresence>
-        {error && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="error_container"
-          >
-            <h1>
-              check account type maybe its a private account try again later
-            </h1>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      <AnimatePresence>{error && <Error />}</AnimatePresence>
       <div className="card_Container">
         <Card data={DATA} />
       </div>

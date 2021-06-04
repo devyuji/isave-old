@@ -9,7 +9,7 @@
 :root {
   --bg-clr: #fff;
   --ft: "Poppins", sans-serif;
-  --animation: 30rem;
+  /* --animation: 30rem; */
 }
 
 body {
@@ -48,11 +48,18 @@ a {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.header .routes a {
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-top: 1rem;
+}
+
+.header .nav_active {
+  border-bottom: 2px solid #000;
 }
 
 /*body*/
@@ -126,10 +133,13 @@ a {
   background-color: #fff;
 }
 
-.card_Container a {
+.card_Container .btn {
   font-size: 1.5rem;
   font-weight: 600;
   text-transform: capitalize;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .image_container img {
@@ -174,12 +184,18 @@ a {
 .footer {
   margin-top: auto;
   width: 100%;
+  padding: 1rem 0;
+  text-align: center;
 }
 
 .footer h1 {
-  text-align: center;
+  margin-bottom: 0.2rem;
+}
+
+.footer h1,
+.footer a {
   font-size: 1rem;
-  padding: 2rem 0;
+  font-weight: 600;
   text-transform: capitalize;
   letter-spacing: 1px;
   opacity: 0.9;
@@ -223,11 +239,65 @@ a {
   margin-bottom: 1rem;
 }
 
-@media (min-width: 600px) {
-  :root {
-    --animation: 35rem;
-  }
+/* profile  */
+.profileContainer {
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-around;
+  width: 90%;
+  margin-bottom: 2rem;
+}
 
+.profileContainer img {
+  width: 12rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.profileContainer .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0.3rem;
+}
+
+.profileContainer .details h2 {
+  font-size: clamp(1rem, 1.2rem, 2rem);
+}
+
+.profileContainer .details .btn {
+  border: none;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  background-color: white;
+  text-transform: uppercase;
+  font-family: var(--ft);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* preview */
+
+.portal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  height: 120vh;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
   .header {
     padding: 0 2rem;
     flex-direction: row;
@@ -256,5 +326,10 @@ a {
   .how_container {
     margin: 3rem 0 1.5rem;
     width: 35rem;
+  }
+
+  .profileContainer {
+    width: 35rem;
+    flex-direction: row;
   }
 }
