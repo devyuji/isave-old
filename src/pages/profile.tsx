@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AnimatePresence } from "framer-motion";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { MobileOnlyView } from "react-device-detect";
 
 // lib
@@ -16,29 +16,19 @@ import Error from "../components/error";
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { prevLinkProfile, profile } from "../redux/action";
+import { isModalOpen, prevLinkProfile, profile } from "../redux/action";
 
 const TITLE = "download profile image. Just paste the profile link";
 
 const Profile: FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState(false);
   const [error, setError] = useState(false);
 
   const DATA = useSelector((s: any) => s.PROFILE_DATA);
   const prevInputValue = useSelector((s: any) => s.PREVLINK);
+  const modal = useSelector((s: any) => s.ISMODALOPEN);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const body: any = document.querySelector("body");
-
-    if (modal) {
-      body.style.overflow = "hidden";
-    } else {
-      body.style.overflow = "visible";
-    }
-  }, [modal]);
 
   const instagramUsername = (url: string) => {
     let username = url.split("/")[3];
@@ -82,7 +72,7 @@ const Profile: FC = () => {
   };
 
   const togglePortal = () => {
-    setModal(!modal);
+    dispatch(isModalOpen(!modal));
   };
 
   return (
@@ -120,12 +110,7 @@ const Profile: FC = () => {
         </div>
       )}
       <Footer />
-      {modal && (
-        <Preview
-          togglePortal={togglePortal}
-          imageLink={DATA.profile_image_src}
-        />
-      )}
+      <Preview imageLink={DATA.profile_image_src} />
     </>
   );
 };

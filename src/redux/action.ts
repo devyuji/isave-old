@@ -5,6 +5,13 @@ export const post = (data: any) => {
   };
 };
 
+export const profile = (data: any) => {
+  return {
+    type: "PROFILE",
+    payload: data,
+  };
+};
+
 export const prevLinkPost = (link: string) => {
   return {
     type: "POST_URL",
@@ -19,9 +26,9 @@ export const prevLinkProfile = (link: string) => {
   };
 };
 
-export const profile = (data: any) => {
+export const isModalOpen = (toggle: boolean) => {
   return {
-    type: "PROFILE",
-    payload: data,
+    type: "ISMODALOPEN",
+    payload: toggle,
   };
 };
