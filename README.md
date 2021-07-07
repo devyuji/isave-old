@@ -1,12 +1,14 @@
 # ISAVE
 
+This repository is deprecated!
+
 Instagram tool to download images, videos, reels in one place
 
 ![](/public/images/cover_image.png)
 
 # DEMO
 
-[Web App](https://www.isave.cc/)
+[Web App](https://github.com/devyuji/isave-nextjs)
 
 [Check out the App](https://github.com/devyuji/isave-app)
 
