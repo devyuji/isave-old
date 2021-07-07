@@ -1,6 +1,6 @@
 # ISAVE
 
-This repository is deprecated!
+This repository is deprecated! see this [one](https://github.com/devyuji/isave-nextjs)
 
 Instagram tool to download images, videos, reels in one place
 
